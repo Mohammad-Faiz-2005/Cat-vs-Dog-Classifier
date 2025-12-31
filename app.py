@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 
-st.title("🐱 Cat vs Dog Classifier")
+st.title("Cat vs Dog Classifier")
 
 model = tf.keras.models.load_model("cat_dog_model888.keras")
 
@@ -21,6 +21,8 @@ if uploaded_file is not None:
     pred = model.predict(img_array)
 
     if pred[0][0] >= 0.5:
-        st.success("🐶 Dog")
+        st.success(f"🐶 Dog — {pred[0][0]*100:.2f}%")
     else:
-        st.success("🐱 Cat")
+        st.success(f"🐱 Cat — {(1-pred[0][0])*100:.2f}%")
+
+
